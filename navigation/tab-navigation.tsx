@@ -16,8 +16,16 @@ export default function TabNavigator({ navigation }: Props) {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: 'orange',
-        tabBarStyle: { paddingTop: 20, borderTopWidth: 0 },
-        // headerShown: false,
+        tabBarStyle: {
+          paddingTop: 20,
+          borderTopWidth: 0,
+          position: 'absolute',
+          bottom: 25,
+          left: 20,
+          right: 20,
+          borderRadius: 50,
+        },
+        headerShown: false,
       }}>
       <Tab.Screen
         name="Home"
