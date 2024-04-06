@@ -1,14 +1,14 @@
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Settings = () => {
+const Profile = () => {
   return (
     <SafeAreaView>
-      <Text>Settings</Text>
+      <Text>Profile</Text>
     </SafeAreaView>
   );
 };
 
-export default Settings;
+export default Profile;
 
 const styles = StyleSheet.create({});
