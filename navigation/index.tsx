@@ -1,36 +1,27 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from './(tabs)/home';
-import Settings from './(tabs)/settings';
+import TabNavigator from './tab-navigation';
 
-// const Stack = createStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator();
+// import Home from './(tabs)/home';
+// import Settings from './(tabs)/settings';
+
+export type RootStackParamList = {
+  TabNavigator: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootStack() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="TabNavigator">
+        <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-// export default function RootStack() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator initialRouteName="Overview">
-//         <Stack.Screen name="Overview" component={Overview} />
-//         <Stack.Screen
-//           name="Details"
-//           component={Details}
-//           options={({ navigation }) => ({
-//             headerLeft: () => <BackButton onPress={navigation.goBack} />,
-//           })}
-//         />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
