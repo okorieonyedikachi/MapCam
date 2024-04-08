@@ -1,14 +1,15 @@
-import { Button } from 'components/Button';
 import { Camera, CloseCircle } from 'iconsax-react-native';
+import { gameList } from 'lib/data';
 import { useState } from 'react';
 import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
+  const [randomChallenge, setRandomChallenge] = useState('');
 
   const modalVisible = () => {
+    const randomIndex = Math.floor(Math.random() * gameList.length); //index
+    setRandomChallenge(gameList[randomIndex]);
     setShowModal(true);
   };
   const hideModal = () => {
@@ -40,8 +41,8 @@ const Home = () => {
             </Pressable>
             <Text style={styles.modalHeader}>Challenge</Text>
           </View>
-          <View style={{ marginTop: 20, marginBottom: 50 }}>
-            <Text>I spy something red</Text>
+          <View style={{ marginTop: 20, marginBottom: 30 }}>
+            <Text style={{ fontSize: 18 }}>I spy with my little eye .... {randomChallenge}</Text>
           </View>
 
           <Pressable

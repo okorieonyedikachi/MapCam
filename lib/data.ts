@@ -1,0 +1,16 @@
+export const gameList = [
+  'something red',
+  'something round',
+  'something furry',
+  'something shiny.',
+  'something with a number on it',
+  'something made of wood',
+  'something that makes a sound',
+  'something you can climb on',
+  'something that tells time',
+  'something green',
+  'something that has stripes',
+  'something that is made of two different materials',
+  'something that is reflected in the water',
+  ' something blue',
+];
