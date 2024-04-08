@@ -40,9 +40,14 @@ const Home = () => {
             </Pressable>
             <Text style={styles.modalHeader}>Challenge</Text>
           </View>
-          <View>
+          <View style={{ marginTop: 20, marginBottom: 50 }}>
             <Text>I spy something red</Text>
           </View>
+
+          <Pressable
+            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}>
+            <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
+          </Pressable>
         </SafeAreaView>
       </Modal>
     </SafeAreaView>
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '90%',
     backgroundColor: '#fffaf0',
-    borderRadius: 10,
+    borderRadius: 15,
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
