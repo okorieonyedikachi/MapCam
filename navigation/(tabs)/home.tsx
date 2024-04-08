@@ -1,39 +1,50 @@
 import { Button } from 'components/Button';
-import { Camera } from 'iconsax-react-native';
+import { Camera, CloseCircle } from 'iconsax-react-native';
 import { useState } from 'react';
-import { Modal, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const handleCameraBtnPress = () => {
+  const modalVisible = () => {
     setShowModal(true);
+  };
+  const hideModal = () => {
+    setShowModal(false);
   };
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <View style={[styles.cameraContainer, styles.elevation]}>
-        <TouchableOpacity onPress={handleCameraBtnPress}>
-          <Camera color="#555555" size={30} />
-        </TouchableOpacity>
-      </View>
-      {showModal && (
-        <Modal
-          style={styles.modalContainer}
-          visible={showModal}
-          onRequestClose={() => {
-            setShowModal(false);
-          }}
-          transparent>
-          <Button>chvdv</Button>
-        </Modal>
-      )}
+      <Pressable style={[styles.cameraContainer, styles.elevation]} onPress={modalVisible}>
+        <Camera color="#555555" size={30} />
+      </Pressable>
+
+      <Modal
+        visible={showModal}
+        onRequestClose={() => {
+          setShowModal(false);
+        }}
+        onShow={modalVisible}
+        animationType="fade"
+        transparent>
+        <SafeAreaView style={styles.modalContainer}>
+          <View style={styles.closeBtn}>
+            <Pressable onPress={hideModal}>
+              <CloseCircle color="orange" />
+            </Pressable>
+            <Text style={styles.modalHeader}>Challenge</Text>
+          </View>
+          <View>
+            <Text>I spy something red</Text>
+          </View>
+        </SafeAreaView>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -59,15 +70,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   modalContainer: {
-    // flex: 1,
-    // height: '20%',
-    // top: '30%',
-    // width: '90%',
-    backgroundColor: 'red',
+    top: '40%',
+    height: '20%',
+    alignSelf: 'center',
+    width: '90%',
+    backgroundColor: '#fffaf0',
+    borderRadius: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
   },
-  modal: {
-    width: '80%',
-    height: '50%',
-    backgroundColor: 'red',
+  closeBtn: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+  },
+  modalHeader: {
+    fontSize: 20,
+    fontWeight: '600',
   },
 });
