@@ -23,7 +23,7 @@ const Home = () => {
         alignItems: 'center',
       }}>
       <Pressable style={[styles.cameraContainer, styles.elevation]} onPress={modalVisible}>
-        <Camera color="#555555" size={30} />
+        <Camera color="#555555" size={28} />
       </Pressable>
 
       <Modal
@@ -46,7 +46,8 @@ const Home = () => {
           </View>
 
           <Pressable
-            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}>
+            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}
+            onPress={() => console.log('true')}>
             <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
           </Pressable>
         </SafeAreaView>
