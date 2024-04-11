@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import { Camera, CloseCircle } from 'iconsax-react-native';
 import { gameList } from 'lib/data';
 import { useState } from 'react';
 import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const Home = ({}) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,16 @@ const Home = ({}) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+      <MapView
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
       <Pressable style={[styles.cameraContainer, styles.elevation]} onPress={modalVisible}>
         <Camera color="#555555" size={28} />
       </Pressable>
@@ -36,21 +47,23 @@ const Home = ({}) => {
         onShow={modalVisible}
         animationType="fade"
         transparent>
-        <SafeAreaView style={styles.modalContainer}>
-          <View style={styles.closeBtn}>
-            <Pressable onPress={hideModal}>
-              <CloseCircle color="orange" />
-            </Pressable>
-            <Text style={styles.modalHeader}>Challenge</Text>
-          </View>
-          <View style={{ marginTop: 20, marginBottom: 30 }}>
-            <Text style={{ fontSize: 18 }}>I spy with my little eye .... {randomChallenge}</Text>
-          </View>
+        <SafeAreaView style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', flex: 1 }}>
+          <SafeAreaView style={styles.modalContainer}>
+            <View style={styles.closeBtn}>
+              <Pressable onPress={hideModal}>
+                <CloseCircle color="orange" />
+              </Pressable>
+              <Text style={styles.modalHeader}>Challenge</Text>
+            </View>
+            <View style={{ marginTop: 20, marginBottom: 30 }}>
+              <Text style={{ fontSize: 18 }}>I spy with my little eye .... {randomChallenge}</Text>
+            </View>
 
-          <Pressable
-            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}>
-            <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
-          </Pressable>
+            <Pressable
+              style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}>
+              <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
+            </Pressable>
+          </SafeAreaView>
         </SafeAreaView>
       </Modal>
     </SafeAreaView>
@@ -60,6 +73,10 @@ const Home = ({}) => {
 export default Home;
 
 const styles = StyleSheet.create({
+  map: {
+    width: '100%',
+    height: '100%',
+  },
   cameraContainer: {
     backgroundColor: 'white',
     justifyContent: 'center',
@@ -79,7 +96,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     top: '40%',
-    height: '20%',
+    height: '23%',
     alignSelf: 'center',
     width: '90%',
     backgroundColor: '#fffaf0',
