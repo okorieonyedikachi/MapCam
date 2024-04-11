@@ -1,9 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { Camera, CloseCircle } from 'iconsax-react-native';
 import { gameList } from 'lib/data';
 import { useState } from 'react';
 import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-const Home = () => {
+const Home = ({}) => {
   const [showModal, setShowModal] = useState(false);
   const [randomChallenge, setRandomChallenge] = useState('');
 
@@ -15,6 +16,7 @@ const Home = () => {
   const hideModal = () => {
     setShowModal(false);
   };
+
   return (
     <SafeAreaView
       style={{
@@ -46,8 +48,7 @@ const Home = () => {
           </View>
 
           <Pressable
-            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}
-            onPress={() => console.log('true')}>
+            style={{ backgroundColor: 'orange', width: '40%', padding: 10, borderRadius: 8 }}>
             <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
           </Pressable>
         </SafeAreaView>

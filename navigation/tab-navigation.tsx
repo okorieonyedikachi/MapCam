@@ -14,15 +14,6 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-function StackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-}
-
 export default function TabNavigator() {
   return (
     <Tab.Navigator
@@ -65,5 +56,13 @@ export default function TabNavigator() {
         }}
       />
     </Tab.Navigator>
+  );
+}
+function StackNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Stack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false }} />
+    </Stack.Navigator>
   );
 }
