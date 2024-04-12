@@ -1,7 +1,9 @@
 // import { useNavigation } from '@react-navigation/native';
+import GoogleMap from 'components/GoogleMap';
+import * as Location from 'expo-location';
 import { Camera, CloseCircle } from 'iconsax-react-native';
 import { gameList } from 'lib/data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
@@ -17,7 +19,7 @@ const Home = ({}) => {
   const hideModal = () => {
     setShowModal(false);
   };
-
+  const { cameraReference } = GoogleMap();
   return (
     <SafeAreaView
       style={{
@@ -26,15 +28,12 @@ const Home = ({}) => {
         alignItems: 'center',
       }}>
       <MapView
-        style={styles.map}
+        style={StyleSheet.absoluteFill}
         provider={PROVIDER_GOOGLE}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        ref={cameraReference}
+        showsUserLocation
       />
+
       <Pressable style={[styles.cameraContainer, styles.elevation]} onPress={modalVisible}>
         <Camera color="#555555" size={28} />
       </Pressable>
