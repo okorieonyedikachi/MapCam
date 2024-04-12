@@ -22,7 +22,14 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundelIdentifier": "com.optic.cosmasdaniella",
+      "config": {
+        "googleMapsApiKey": "AIzaSyCzrlnTJ2Ir3fIWsPJofOo05SeU6iieNfU"
+      },
+      "infoPList": {
+        "UIBackgroundModes": ["location", "fetch", "remote-notification"]
+      }
     },
     "android": {
       "adaptiveIcon": {
