@@ -10,9 +10,14 @@ import Home from './(tabs)/home';
 import Profile from './(tabs)/profile';
 import Settings from './(tabs)/settings';
 
+export type StackParamList = {
+  Home: undefined;
+  Camera: undefined;
+};
+
 const Tab = createBottomTabNavigator();
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<StackParamList>();
 
 export default function TabNavigator() {
   return (
@@ -36,7 +41,7 @@ export default function TabNavigator() {
         component={StackNavigator}
         options={{
           tabBarIcon: ({ color }) => <Map color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 14 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
         }}
       />
       <Tab.Screen
@@ -44,7 +49,7 @@ export default function TabNavigator() {
         component={Profile}
         options={{
           tabBarIcon: ({ color }) => <ProfileCircle color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 14 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
         }}
       />
       <Tab.Screen
@@ -52,7 +57,7 @@ export default function TabNavigator() {
         component={Settings}
         options={{
           tabBarIcon: ({ color }) => <Setting3 color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 14 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
         }}
       />
     </Tab.Navigator>
