@@ -1,7 +1,6 @@
 import * as Location from 'expo-location';
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import MapView, { Camera, PROVIDER_GOOGLE } from 'react-native-maps';
+import { useEffect, useRef, useState } from 'react';
+import MapView, { Camera } from 'react-native-maps';
 
 const GoogleMap = () => {
   const [position, setPostion] = useState<Location.LocationObjectCoords>();
@@ -25,6 +24,7 @@ const GoogleMap = () => {
     }
     const location = await Location.getCurrentPositionAsync();
     setPostion(location?.coords);
+    // zoom in camera effect on location when the app loads
     const camera: Camera = {
       center: { latitude: location?.coords.latitude!, longitude: location?.coords.longitude! },
       zoom: 20,
@@ -33,17 +33,9 @@ const GoogleMap = () => {
       altitude: 0,
     };
     cameraReference.current?.animateCamera(camera, { duration: 1500 });
-    console.log(location);
   };
 
   return { errorMessage, position, cameraReference };
 };
 
 export default GoogleMap;
-
-const styles = StyleSheet.create({
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-});
