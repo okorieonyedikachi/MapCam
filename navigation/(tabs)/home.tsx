@@ -25,7 +25,7 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
 
   const openCamera = () => {
     setShowModal(false);
-    navigation.navigate('Camera');
+    navigation.navigate('CameraStack', { screen: 'Camera' });
   };
   return (
     <SafeAreaView
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   acceptChallengeBtn: {
     backgroundColor: 'orange',
-    width: '40%',
+    width: '50%',
     padding: 10,
     borderRadius: 8,
   },

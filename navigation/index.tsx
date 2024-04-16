@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 
 // import { createStackNavigator } from '@react-navigation/stack';
-import TabNavigator from './tab-navigation';
+import AppNavigator from './tab-navigation';
 
 export default function RootStack() {
   return (
     <NavigationContainer>
-      <TabNavigator />
+      <AppNavigator />
     </NavigationContainer>
   );
 }

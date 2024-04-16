@@ -12,14 +12,27 @@ import Settings from './(tabs)/settings';
 
 export type StackParamList = {
   Home: undefined;
+  CameraStack: { screen: string };
+};
+export type CameraParamList = {
   Camera: undefined;
 };
-
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator<StackParamList>();
+const CamStack = createStackNavigator<CameraParamList>();
+const AppStack = createStackNavigator();
 
-export default function TabNavigator() {
+export default function AppNavigator() {
+  return (
+    <AppStack.Navigator>
+      <AppStack.Screen name="App" children={TabNavigator} />
+      <AppStack.Screen name="Map" children={StackNavigator} />
+    </AppStack.Navigator>
+  );
+}
+
+function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -67,7 +80,19 @@ function StackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="CameraStack"
+        children={CameraNavigator}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
+  );
+}
+
+function CameraNavigator() {
+  return (
+    <CamStack.Navigator>
+      <CamStack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false }} />
+    </CamStack.Navigator>
   );
 }

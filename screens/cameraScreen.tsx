@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const CameraScreen = () => {
   return (
-    <View>
+    <View style={{ justifyContent: 'center' }}>
       <Text>CameraScreen</Text>
     </View>
   );
