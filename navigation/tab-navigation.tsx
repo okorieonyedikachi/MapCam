@@ -18,7 +18,6 @@ export type CameraParamList = {
 };
 const Tab = createBottomTabNavigator();
 
-const Stack = createStackNavigator<StackParamList>();
 const CamStack = createStackNavigator<CameraParamList>();
 const AppStack = createStackNavigator();
 
@@ -49,8 +48,8 @@ function TabNavigator() {
         headerShown: false,
       }}>
       <Tab.Screen
-        name="Map"
-        component={StackNavigator}
+        name="Home"
+        component={Home}
         options={{
           tabBarIcon: ({ color }) => <Map color={color} />,
           tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
@@ -73,18 +72,6 @@ function TabNavigator() {
         }}
       />
     </Tab.Navigator>
-  );
-}
-function StackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      {/* <Stack.Screen
-        name="CameraStack"
-        children={CameraNavigator}
-        options={{ headerShown: false }}
-      /> */}
-    </Stack.Navigator>
   );
 }
 
