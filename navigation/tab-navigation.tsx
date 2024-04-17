@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Map, ProfileCircle, Setting3 } from 'iconsax-react-native';
 
-// import { RootStackParamList } from '.';
 import CameraScreen from 'screens/cameraScreen';
 
 import Home from './(tabs)/home';
@@ -12,7 +11,7 @@ import Settings from './(tabs)/settings';
 
 export type StackParamList = {
   Home: undefined;
-  CameraStack: { screen: string };
+  CameraScreen: undefined;
 };
 export type CameraParamList = {
   Camera: undefined;
@@ -25,9 +24,9 @@ const AppStack = createStackNavigator();
 
 export default function AppNavigator() {
   return (
-    <AppStack.Navigator>
+    <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="App" children={TabNavigator} />
-      <AppStack.Screen name="Map" children={StackNavigator} />
+      <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
     </AppStack.Navigator>
   );
 }
@@ -80,11 +79,11 @@ function StackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="CameraStack"
         children={CameraNavigator}
         options={{ headerShown: false }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

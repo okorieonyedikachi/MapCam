@@ -25,7 +25,7 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
 
   const openCamera = () => {
     setShowModal(false);
-    navigation.navigate('CameraStack', { screen: 'Camera' });
+    navigation.navigate('CameraScreen');
   };
   return (
     <SafeAreaView
