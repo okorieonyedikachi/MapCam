@@ -33,7 +33,6 @@ const GoogleMap = () => {
       altitude: 0,
     };
     cameraReference.current?.animateCamera(camera, { duration: 1500 });
-    console.log(location);
   };
 
   return { errorMessage, position, cameraReference };
