@@ -38,7 +38,7 @@ function TabNavigator() {
         tabBarStyle: {
           paddingTop: 20,
           paddingBottom: 20,
-          borderTopWidth: 0,
+          borderTopWidth: 0.2,
           position: 'absolute',
           bottom: 25,
           left: 20,
