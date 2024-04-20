@@ -1,29 +1,29 @@
-import { More, Notification, Profile } from 'iconsax-react-native';
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ArrowRight2, More, Notification, Profile } from 'iconsax-react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 type SettingsListType = {
   title: string;
   icon: React.ReactElement;
   dropdownItems: string[];
+  isOpen?: boolean;
 };
 
 const SettingsList: SettingsListType[] = [
   {
-    icon: <Profile color="orange" />,
+    icon: <Profile color="orange" size={18} />,
     title: 'Account',
     dropdownItems: ['Edit profile', 'Delete account'],
   },
   {
-    icon: <Notification color="orange" />,
+    icon: <Notification color="orange" size={18} />,
     title: 'Notification',
     dropdownItems: ['Application notification'],
   },
   {
-    icon: <More color="orange" />,
+    icon: <More color="orange" size={18} />,
     title: 'More',
-    dropdownItems: ['Report a bug', 'Send a feedback'],
+    dropdownItems: ['Help', 'Report a bug', 'Send a feedback'],
   },
 ];
 
@@ -33,17 +33,21 @@ type renderItemsProps = {
 };
 
 const Settings = () => {
-  // const [settingsList, setSettingList] = useState<SettingsList[]>();
-
   const RenderItems = ({ item, index }: renderItemsProps) => (
     <View style={styles.listContainer}>
       <View style={styles.listRow}>
         {item.icon}
         <Text style={styles.listTitle}>{item.title}</Text>
       </View>
-      <View>
-        {item.dropdownItems.map((dropdownItems) => (
-          <Text key={dropdownItems}>{dropdownItems}</Text>
+
+      <View style={styles.dropdownItemsBox}>
+        {item.dropdownItems.map((dropdownItems, index) => (
+          <View
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+            key={index}>
+            <Text style={styles.dropdownItems}>{dropdownItems}</Text>
+            <ArrowRight2 color="grey" size={15} />
+          </View>
         ))}
       </View>
     </View>
@@ -51,7 +55,7 @@ const Settings = () => {
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
       <View style={styles.header}>
-        <Text style={{ fontSize: 30, fontWeight: '600', color: '#002E63', marginBottom: 20 }}>
+        <Text style={{ fontSize: 20, fontWeight: '500', color: '#002E63', marginBottom: 15 }}>
           Settings
         </Text>
       </View>
@@ -67,10 +71,11 @@ export default Settings;
 const styles = StyleSheet.create({
   header: {
     backgroundColor: 'orange',
-    height: '25%',
+    height: '15%',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    borderRadius: 60,
+    borderBottomLeftRadius: 60,
+    borderBottomRightRadius: 60,
   },
   container: {
     flex: 1,
@@ -81,8 +86,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
   },
   listContainer: {
-    borderBottomColor: 'orange',
-    borderBottomWidth: 0.2,
     paddingBottom: 10,
   },
   listRow: {
@@ -92,9 +95,19 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 10,
     alignItems: 'center',
+    borderBottomColor: 'orange',
+    borderBottomWidth: 0.2,
   },
   listTitle: {
-    fontSize: 23,
+    fontSize: 17,
     fontWeight: '500',
+  },
+  dropdownItemsBox: {
+    gap: 20,
+    margin: 10,
+  },
+  dropdownItems: {
+    color: 'grey',
+    fontSize: 17,
   },
 });
