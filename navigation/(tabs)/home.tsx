@@ -4,7 +4,7 @@ import { Camera, CloseCircle } from 'iconsax-react-native';
 import { gameList } from 'lib/data';
 import { StackParamList } from 'navigation/tab-navigation';
 import { useState } from 'react';
-import { Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 type HomeScreenNavigationProps = StackNavigationProp<StackParamList, 'Home'>;
@@ -76,11 +76,12 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
 };
 
 export default Home;
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   map: {
-    width: '100%',
-    height: '100%',
+    width,
+    height,
   },
   cameraContainer: {
     backgroundColor: 'white',
