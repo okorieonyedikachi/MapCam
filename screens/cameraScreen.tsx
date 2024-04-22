@@ -1,27 +1,82 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ArrowLeft2 } from 'iconsax-react-native';
+import { Camera } from 'expo-camera';
+import { ArrowLeft2, Repeat, Save2 } from 'iconsax-react-native';
 import { StackParamList } from 'navigation/tab-navigation';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, View, Text, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type cameraScreenNavigationProps = StackNavigationProp<StackParamList, 'CameraScreen'>;
 
 const CameraScreen = () => {
   const navigation = useNavigation<cameraScreenNavigationProps>();
 
+  const cameraRef = useRef<Camera | null>(null);
+  const [hasCameraPermissions, setHasCameraPermission] = useState<
+    Camera.CameraStatus | undefined
+  >();
+  const [photo, setPhoto] = useState<string | undefined>();
+
+  useEffect(() => {
+    (async () => {
+      const cameraPermission = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraPermission.status === 'granted');
+    })();
+  }, [cameraRef]);
+
+  if (hasCameraPermissions === undefined) {
+    return <Text>Requesting Permissions ...</Text>;
+  } else if (!hasCameraPermissions) {
+    return (
+      <SafeAreaView>
+        <Text>Permission not granted, change in settings </Text>
+      </SafeAreaView>
+    );
+  }
+
+  const takePhoto = async () => {
+    if (cameraRef) {
+      try {
+        const newPhoto = await cameraRef.current?.takePictureAsync();
+        console.log(newPhoto);
+        setPhoto(newPhoto.uri);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   return (
     <View style={{ alignItems: 'center', flex: 1, backgroundColor: 'black' }}>
-      <View style={styles.camera}>
-        <Pressable onPress={() => navigation.navigate('Home')} style={styles.backBtn}>
-          <ArrowLeft2 color="orange" />
-        </Pressable>
-
-        <Text>Camera</Text>
-      </View>
-      <View style={styles.camControls}>
-        <Pressable style={styles.snapBtn}>
-          <View style={styles.snapBtnInner} />
-        </Pressable>
+      {!photo ? (
+        <Camera style={styles.camera} ref={cameraRef} autoFocus>
+          <Pressable onPress={() => navigation.navigate('Home')} style={styles.backBtn}>
+            <ArrowLeft2 color="orange" />
+          </Pressable>
+        </Camera>
+      ) : (
+        <Image source={{ uri: photo }} style={styles.preview} />
+      )}
+      <View style={{ backgroundColor: 'red', width: '100%', height: '5%' }}>
+        {photo ? (
+          <View style={{ flexDirection: 'row', backgroundColor: 'blue' }}>
+            <Pressable style={styles.previewBtns}>
+              <Text>Re-Take</Text>
+              <Repeat />
+            </Pressable>
+            <Pressable style={styles.previewBtns}>
+              <Text>Save</Text>
+              <Save2 />
+            </Pressable>
+          </View>
+        ) : (
+          <View style={styles.camControls}>
+            <Pressable style={styles.snapBtn} onPress={takePhoto}>
+              <View style={styles.snapBtnInner} />
+            </Pressable>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -72,5 +127,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 120,
     margin: 'auto',
+  },
+  preview: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
+  previewBtns: {
+    flexDirection: 'row',
+    gap: 4,
   },
 });

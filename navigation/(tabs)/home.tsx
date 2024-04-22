@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     position: 'absolute',
     left: '85%',
-    top: '90%',
+    top: '80%',
   },
   elevation: {
     shadowColor: '#171717',
