@@ -61,7 +61,7 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
               </Pressable>
               <Text style={styles.modalHeader}>Challenge</Text>
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginVertical: 20 }}>
               <Text style={{ fontSize: 18 }}>I spy with my little eye .... {randomChallenge}</Text>
             </View>
 
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   acceptChallengeBtn: {
     backgroundColor: 'orange',
-    width: '50%',
+    width: '42%',
     padding: 10,
     borderRadius: 8,
   },
