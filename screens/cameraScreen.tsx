@@ -59,7 +59,7 @@ const CameraScreen = () => {
       ) : (
         <Image source={{ uri: photo }} style={styles.preview} />
       )}
-      <View style={{ marginHorizontal: , width: '100%' }}>
+      <View style={{ width: '100%' }}>
         {photo ? (
           <View
             style={{
