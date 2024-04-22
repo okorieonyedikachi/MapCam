@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import ImageButtons from 'components/ImageButtons';
 import { Camera } from 'expo-camera';
 import { ArrowLeft2, Repeat, Save2 } from 'iconsax-react-native';
 import { StackParamList } from 'navigation/tab-navigation';
@@ -16,7 +17,7 @@ const CameraScreen = () => {
   const [hasCameraPermissions, setHasCameraPermission] = useState<
     Camera.CameraStatus | undefined
   >();
-  const [photo, setPhoto] = useState<string | undefined>();
+  const [photo, setPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -58,17 +59,26 @@ const CameraScreen = () => {
       ) : (
         <Image source={{ uri: photo }} style={styles.preview} />
       )}
-      <View style={{ backgroundColor: 'red', width: '100%', height: '5%' }}>
+      <View style={{ marginHorizontal: , width: '100%' }}>
         {photo ? (
-          <View style={{ flexDirection: 'row', backgroundColor: 'blue' }}>
-            <Pressable style={styles.previewBtns}>
-              <Text>Re-Take</Text>
-              <Repeat />
-            </Pressable>
-            <Pressable style={styles.previewBtns}>
-              <Text>Save</Text>
-              <Save2 />
-            </Pressable>
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingHorizontal: 20,
+              justifyContent: 'space-between',
+            }}>
+            <ImageButtons
+              icon={<Repeat color="orange" size={34} />}
+              title="Re-take"
+              onPress={() => {
+                return setPhoto(null);
+              }}
+            />
+            <ImageButtons
+              icon={<Save2 color="orange" size={34} />}
+              title="Save"
+              onPress={() => console.log(true)}
+            />
           </View>
         ) : (
           <View style={styles.camControls}>
