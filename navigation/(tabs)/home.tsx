@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Dimensions, Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-type HomeScreenNavigationProps = StackNavigationProp<StackParamList, 'Home'>;
+type HomeScreenNavigationProps = StackNavigationProp<StackParamList, 'App'>;
 
 const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
   const [showModal, setShowModal] = useState(false);

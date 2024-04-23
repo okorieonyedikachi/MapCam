@@ -19,6 +19,7 @@ const CameraScreen = () => {
   >();
   const [photo, setPhoto] = useState<string | null>(null);
 
+  // camera permission
   useEffect(() => {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
@@ -52,7 +53,7 @@ const CameraScreen = () => {
     <View style={{ alignItems: 'center', flex: 1, backgroundColor: 'black' }}>
       {!photo ? (
         <Camera style={styles.camera} ref={cameraRef} autoFocus>
-          <Pressable onPress={() => navigation.navigate('Home')} style={styles.backBtn}>
+          <Pressable onPress={() => navigation.navigate('App')} style={styles.backBtn}>
             <ArrowLeft2 color="orange" />
           </Pressable>
         </Camera>
