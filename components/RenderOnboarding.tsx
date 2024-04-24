@@ -10,7 +10,11 @@ interface Props {
 const RenderOnboarding = ({ item, index }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   return (
-    <View style={styles.itemContainer}>
+    <View
+      style={[
+        styles.itemContainer,
+        { width: SCREEN_WIDTH, backgroundColor: item.backgroundColor },
+      ]}>
       <View>
         <LottieView
           source={item.animation}
@@ -18,6 +22,10 @@ const RenderOnboarding = ({ item, index }: Props) => {
           autoPlay
           loop
         />
+      </View>
+      <View>
+        <Text style={styles.itemsHeader}>{item.title}</Text>
+        {/* <Text>{item.text}</Text> */}
       </View>
     </View>
   );
@@ -30,7 +38,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'red',
-    marginBottom: 120,
+  },
+  itemsHeader: {
+    textAlign: 'center',
+    fontSize: 30,
   },
 });
