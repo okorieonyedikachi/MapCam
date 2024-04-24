@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import RenderOnboarding from 'components/RenderOnboarding';
+import { OnboardingData } from 'lib/data';
 import { StackParamList } from 'navigation/tab-navigation';
 import React from 'react';
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
 type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onboarding'>;
 const OnboardingScreen = () => {
@@ -12,9 +14,18 @@ const OnboardingScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Pressable onPress={navigateHome}>
+      <FlatList
+        data={OnboardingData}
+        renderItem={({ item, index }) => <RenderOnboarding item={item} index={index} />}
+        keyExtractor={(item) => item.id.toString()}
+        horizontal
+        scrollEventThrottle={16}
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+      />
+      {/* <Pressable onPress={navigateHome}>
         <Text>Home</Text>
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };
