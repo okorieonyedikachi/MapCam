@@ -24,8 +24,8 @@ const RenderOnboarding = ({ item, index }: Props) => {
         />
       </View>
       <View>
-        <Text style={styles.itemsHeader}>{item.title}</Text>
-        {/* <Text>{item.text}</Text> */}
+        <Text style={[styles.itemsHeader, { color: item.textColor }]}>{item.title}</Text>
+        <Text style={[styles.itemText, { color: item.textColor }]}>{item.text}</Text>
       </View>
     </View>
   );
@@ -42,5 +42,9 @@ const styles = StyleSheet.create({
   itemsHeader: {
     textAlign: 'center',
     fontSize: 30,
+  },
+  itemText: {
+    textAlign: 'center',
+    fontSize: 18,
   },
 });
