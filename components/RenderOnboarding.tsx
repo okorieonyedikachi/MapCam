@@ -1,28 +1,44 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 import { OnboardingDataType } from 'lib/data';
 import LottieView from 'lottie-react-native';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { StackParamList } from 'navigation/tab-navigation';
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 interface Props {
   item: OnboardingDataType;
   index: number;
 }
+type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onboarding'>;
 
 const RenderOnboarding = ({ item, index }: Props) => {
-  const [fontsLoaded] = useFonts({
+  useFonts({
     'SourceCodePro-Bubblegum-Sans': require('../assets/fonts/BubblegumSans-Regular.ttf'),
   });
 
   const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const navigation = useNavigation<OnboardingScreenNavigationProps>();
+  const navigateHome = () => {
+    navigation.navigate('App');
+  };
 
-  if (!fontsLoaded) {
-    return <Text>Loading...</Text>;
-  }
   return (
     <View
       style={[
         styles.itemContainer,
         { width: SCREEN_WIDTH, backgroundColor: item.backgroundColor },
       ]}>
+      <Pressable onPress={navigateHome} style={[styles.skipBtn, { width: SCREEN_WIDTH }]}>
+        <Text
+          style={{
+            color: 'grey',
+            fontSize: 23,
+            fontFamily: 'SourceCodePro-Bubblegum-Sans',
+            alignSelf: 'flex-end',
+          }}>
+          Skip
+        </Text>
+      </Pressable>
       <View>
         <LottieView
           source={item.animation}
@@ -47,6 +63,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  skipBtn: {
+    paddingRight: 20,
   },
   textContainer: {
     gap: 20,
