@@ -5,7 +5,7 @@ import { OnboardingData } from 'lib/data';
 import { StackParamList } from 'navigation/tab-navigation';
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
+// import { useSharedValue } from 'react-native-reanimated';
 
 type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onboarding'>;
 const OnboardingScreen = () => {
@@ -13,7 +13,7 @@ const OnboardingScreen = () => {
   const navigateHome = () => {
     navigation.navigate('App');
   };
-  const flatListIndex = useSharedValue(0);
+  // const flatListIndex = useSharedValue(0);
   const onViewableItemsChanged = () => {};
   return (
     <View style={styles.container}>
