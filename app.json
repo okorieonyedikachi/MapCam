@@ -11,7 +11,8 @@
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
           "recordAudioAndroid": true
         }
-      ]
+      ],
+      ["expo-font", { "font": ["./assets/fonts/BubblegumSans-Regular.ttf"] }]
     ],
     "web": {
       "favicon": "./assets/favicon.png"
