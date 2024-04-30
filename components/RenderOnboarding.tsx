@@ -14,15 +14,17 @@ interface Props {
 type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onboarding'>;
 
 const RenderOnboarding = ({ item, index }: Props) => {
-  useFonts({
-    'SourceCodePro-Bubblegum-Sans': require('../assets/fonts/BubblegumSans-Regular.ttf'),
+  const [fontsLoaded] = useFonts({
+    BubblegumSans: require('../assets/fonts/BubblegumSans-Regular.ttf'),
   });
-
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const navigation = useNavigation<OnboardingScreenNavigationProps>();
   const navigateHome = () => {
     navigation.navigate('App');
   };
+  if (!fontsLoaded) {
+    return <Text>Loading</Text>;
+  }
 
   return (
     <View
@@ -35,7 +37,7 @@ const RenderOnboarding = ({ item, index }: Props) => {
           style={{
             color: 'grey',
             fontSize: 23,
-            fontFamily: 'SourceCodePro-Bubblegum-Sans',
+            fontFamily: 'BubblegumSans',
             alignSelf: 'flex-end',
           }}>
           Skip
@@ -78,13 +80,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 50,
     fontWeight: '500',
-    fontFamily: 'SourceCodePro-Bubblegum-Sans',
+    fontFamily: 'BubblegumSans',
   },
   itemText: {
     textAlign: 'center',
     fontSize: 20,
     lineHeight: 28,
-    fontFamily: 'SourceCodePro-Bubblegum-Sans',
+    fontFamily: 'BubblegumSans',
   },
   pagination: {
     bottom: 0,
