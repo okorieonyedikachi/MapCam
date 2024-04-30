@@ -53,7 +53,7 @@ function TabNavigator() {
         component={Home}
         options={{
           tabBarIcon: ({ color }) => <Map color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12, fontFamily: 'BubblegumSans' },
         }}
       />
       <Tab.Screen
@@ -61,7 +61,7 @@ function TabNavigator() {
         component={Profile}
         options={{
           tabBarIcon: ({ color }) => <ProfileCircle color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12, fontFamily: 'BubblegumSans' },
         }}
       />
       <Tab.Screen
@@ -69,7 +69,7 @@ function TabNavigator() {
         component={Settings}
         options={{
           tabBarIcon: ({ color }) => <Setting3 color={color} />,
-          tabBarLabelStyle: { marginTop: 10, fontSize: 12 },
+          tabBarLabelStyle: { marginTop: 10, fontSize: 12, fontFamily: 'BubblegumSans' },
         }}
       />
     </Tab.Navigator>

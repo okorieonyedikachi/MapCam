@@ -62,11 +62,15 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
               <Text style={styles.modalHeader}>Challenge</Text>
             </View>
             <View style={{ marginVertical: 20 }}>
-              <Text style={{ fontSize: 18 }}>I spy with my little eye .... {randomChallenge}</Text>
+              <Text style={{ fontSize: 18, fontFamily: 'BubblegumSans' }}>
+                I spy with my little eye .... {randomChallenge}
+              </Text>
             </View>
 
             <Pressable style={styles.acceptChallengeBtn} onPress={openCamera}>
-              <Text style={{ fontWeight: '600' }}>Accept Challenge</Text>
+              <Text style={{ fontWeight: '600', fontFamily: 'BubblegumSans' }}>
+                Accept Challenge
+              </Text>
             </Pressable>
           </SafeAreaView>
         </SafeAreaView>
@@ -119,6 +123,7 @@ const styles = StyleSheet.create({
   modalHeader: {
     fontSize: 20,
     fontWeight: '600',
+    fontFamily: 'BubblegumSans',
   },
   acceptChallengeBtn: {
     backgroundColor: 'orange',

@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useFonts } from 'expo-font';
 import { OnboardingDataType } from 'lib/data';
 import LottieView from 'lottie-react-native';
 import { StackParamList } from 'navigation/tab-navigation';
@@ -14,17 +13,11 @@ interface Props {
 type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onboarding'>;
 
 const RenderOnboarding = ({ item, index }: Props) => {
-  const [fontsLoaded] = useFonts({
-    BubblegumSans: require('../assets/fonts/BubblegumSans-Regular.ttf'),
-  });
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const navigation = useNavigation<OnboardingScreenNavigationProps>();
   const navigateHome = () => {
     navigation.navigate('App');
   };
-  if (!fontsLoaded) {
-    return <Text>Loading</Text>;
-  }
 
   return (
     <View

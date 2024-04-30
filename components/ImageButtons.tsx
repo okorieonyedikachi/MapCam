@@ -9,7 +9,7 @@ const ImageButtons = ({ icon, title, onPress }: ImageButtonsProps) => {
   return (
     <Pressable style={styles.buttonContainer} onPress={onPress}>
       {icon}
-      <Text style={{ fontSize: 20, color: '#e5e5e5' }}>{title}</Text>
+      <Text style={{ fontSize: 20, color: '#e5e5e5', fontFamily: 'BubblegumSans' }}>{title}</Text>
     </Pressable>
   );
 };

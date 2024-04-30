@@ -1,5 +1,5 @@
 import { ArrowRight2, More, Notification, Profile } from 'iconsax-react-native';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 type SettingsListType = {
@@ -55,7 +55,14 @@ const Settings = () => {
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0)' }}>
       <View style={styles.header}>
-        <Text style={{ fontSize: 20, fontWeight: '500', color: '#002E63', marginBottom: 15 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: '500',
+            color: '#002E63',
+            marginBottom: 15,
+            fontFamily: 'BubblegumSans',
+          }}>
           Settings
         </Text>
       </View>
@@ -99,8 +106,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.2,
   },
   listTitle: {
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: '500',
+    fontFamily: 'BubblegumSans',
   },
   dropdownItemsBox: {
     gap: 20,
@@ -108,6 +116,7 @@ const styles = StyleSheet.create({
   },
   dropdownItems: {
     color: 'grey',
-    fontSize: 17,
+    fontSize: 19,
+    fontFamily: 'BubblegumSans',
   },
 });
