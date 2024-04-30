@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react-native';
 
-const Pagination = ({ style }) => {
+const Pagination = () => {
   return (
     <View style={styles.container}>
       <ArrowLeft2 color="black" />

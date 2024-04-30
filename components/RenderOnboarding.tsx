@@ -5,6 +5,7 @@ import { OnboardingDataType } from 'lib/data';
 import LottieView from 'lottie-react-native';
 import { StackParamList } from 'navigation/tab-navigation';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+
 import Pagination from './Pagination';
 interface Props {
   item: OnboardingDataType;
@@ -52,7 +53,7 @@ const RenderOnboarding = ({ item, index }: Props) => {
         <Text style={[styles.itemsHeader, { color: item.textColor }]}>{item.title}</Text>
         <Text style={[styles.itemText, { color: item.textColor }]}>{item.text}</Text>
       </View>
-      <Pagination style={styles.pagination} />
+      <Pagination />
     </View>
   );
 };
