@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { StackScreenProps } from '@react-navigation/stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Map, ProfileCircle, Setting3 } from 'iconsax-react-native';
-import OnboardingScreen from 'screens/OnboardingScreen';
+// import OnboardingScreen from 'screens/OnboardingScreen';
 import CameraScreen from 'screens/cameraScreen';
 
 import Home from './(tabs)/home';

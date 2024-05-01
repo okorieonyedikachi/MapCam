@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Profile = () => {
-  //   const profileList = ['name', 'email', 'city'];
+  const profileList = ['name', 'email', 'city'];
+  console.log(profileList);
   return (
     <SafeAreaView style={{ backgroundColor: 'white', flex: 1 }}>
       <View style={{ alignSelf: 'center', marginTop: 20 }}>
@@ -19,6 +20,16 @@ const Profile = () => {
           <Text style={{ fontFamily: 'BubblegumSans', fontSize: 20, color: 'grey' }}>
             Lagos, Nigeria
           </Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: 'orange',
+            width: '100%',
+            height: 60,
+            borderRadius: 20,
+            marginTop: 20,
+          }}>
+          <Text>hello</Text>
         </View>
       </View>
     </SafeAreaView>
