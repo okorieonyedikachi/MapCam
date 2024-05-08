@@ -25,7 +25,7 @@ const RenderOnboarding = ({ item, index }: Props) => {
         styles.itemContainer,
         { width: SCREEN_WIDTH, backgroundColor: item.backgroundColor },
       ]}>
-      <Pressable onPress={navigateHome} style={[styles.skipBtn, { width: SCREEN_WIDTH }]}>
+      <Pressable onPressIn={navigateHome} style={[styles.skipBtn]}>
         <Text
           style={{
             color: 'grey',
@@ -64,6 +64,11 @@ const styles = StyleSheet.create({
   },
   skipBtn: {
     paddingRight: 20,
+    width: 60,
+    height: 40,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textContainer: {
     gap: 20,
