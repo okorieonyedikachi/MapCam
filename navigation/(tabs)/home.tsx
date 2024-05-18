@@ -1,10 +1,12 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import ChallengeModal from 'components/ChallengeModal';
 import GoogleMap from 'components/GoogleMap';
-import { Camera, CloseCircle } from 'iconsax-react-native';
+import ModalComponent from 'components/ModalComponent';
+import { Camera } from 'iconsax-react-native';
 import { gameList } from 'lib/data';
 import { StackParamList } from 'navigation/tab-navigation';
 import { useState } from 'react';
-import { Dimensions, Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Pressable, SafeAreaView, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 type HomeScreenNavigationProps = StackNavigationProp<StackParamList, 'App'>;
@@ -44,37 +46,13 @@ const Home = ({ navigation }: { navigation: HomeScreenNavigationProps }) => {
       <Pressable style={[styles.cameraContainer, styles.elevation]} onPress={modalVisible}>
         <Camera color="#555555" size={28} />
       </Pressable>
-
-      <Modal
-        visible={showModal}
-        onRequestClose={() => {
-          setShowModal(false);
-        }}
-        onShow={modalVisible}
-        animationType="fade"
-        transparent>
-        <SafeAreaView style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', flex: 1 }}>
-          <SafeAreaView style={[styles.modalContainer, styles.elevation]}>
-            <View style={styles.closeBtn}>
-              <Pressable onPress={hideModal}>
-                <CloseCircle color="orange" />
-              </Pressable>
-              <Text style={styles.modalHeader}>Challenge</Text>
-            </View>
-            <View style={{ marginVertical: 20 }}>
-              <Text style={{ fontSize: 18, fontFamily: 'BubblegumSans' }}>
-                I spy with my little eye .... {randomChallenge}
-              </Text>
-            </View>
-
-            <Pressable style={styles.acceptChallengeBtn} onPress={openCamera}>
-              <Text style={{ fontWeight: '600', fontFamily: 'BubblegumSans' }}>
-                Accept Challenge
-              </Text>
-            </Pressable>
-          </SafeAreaView>
-        </SafeAreaView>
-      </Modal>
+      <ModalComponent showModal={showModal} modalVisible={modalVisible}>
+        <ChallengeModal
+          hideModal={hideModal}
+          randomChallenge={randomChallenge}
+          openCamera={openCamera}
+        />
+      </ModalComponent>
     </SafeAreaView>
   );
 };
@@ -103,32 +81,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-  },
-  modalContainer: {
-    top: '40%',
-    height: '23%',
-    alignSelf: 'center',
-    width: '90%',
-    backgroundColor: '#fffaf0',
-    borderRadius: 15,
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  closeBtn: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
-  },
-  modalHeader: {
-    fontSize: 20,
-    fontWeight: '600',
-    fontFamily: 'BubblegumSans',
-  },
-  acceptChallengeBtn: {
-    backgroundColor: 'orange',
-    width: '42%',
-    padding: 10,
-    borderRadius: 8,
   },
 });
