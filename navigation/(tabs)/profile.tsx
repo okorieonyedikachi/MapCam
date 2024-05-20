@@ -9,26 +9,34 @@ const Profile = () => {
       <View style={{ alignSelf: 'center', marginTop: 20 }}>
         <Text style={styles.header}>Profile</Text>
       </View>
-      <View style={styles.profilePhoto}>
-        <Text>Photo</Text>
-      </View>
-      <View style={{ marginTop: 20, alignItems: 'center', gap: 10 }}>
-        <Text style={{ fontFamily: 'BubblegumSans', fontSize: 30 }}>Cosmas Daniella</Text>
-        <View style={{ flexDirection: 'row', gap: 8 }}>
-          <Location color="orange" />
-          <Text style={{ fontFamily: 'BubblegumSans', fontSize: 20, color: 'grey' }}>
-            Lagos, Nigeria
-          </Text>
+      <View style={{ height: '75%', justifyContent: 'center' }}>
+        <View style={styles.profilePhoto}>
+          <Text>Photo</Text>
         </View>
-        <View
-          style={{
-            backgroundColor: 'orange',
-            width: '100%',
-            height: 60,
-            borderRadius: 20,
-            marginTop: 20,
-          }}>
-          <Text>hello</Text>
+        <View style={{ marginTop: 20, alignItems: 'center', gap: 15 }}>
+          <Text style={{ fontFamily: 'BubblegumSans', fontSize: 30 }}>Cosmas Daniella</Text>
+          <View
+            style={{
+              width: '60%',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{ fontFamily: 'BubblegumSans', fontSize: 20, color: 'black' }}>
+              Fun Fact :
+            </Text>
+            <Text
+              style={{ fontFamily: 'BubblegumSans', fontSize: 20, color: 'grey', paddingLeft: 8 }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate ipsum nec
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            <Location color="orange" />
+            <Text style={{ fontFamily: 'BubblegumSans', fontSize: 20, color: 'black' }}>
+              Lagos, Nigeria
+            </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
