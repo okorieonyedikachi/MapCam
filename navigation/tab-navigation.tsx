@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Map, ProfileCircle, Setting3 } from 'iconsax-react-native';
 // import OnboardingScreen from 'screens/OnboardingScreen';
+import OnboardingScreen from 'screens/OnboardingScreen';
+import RegisterScreen from 'screens/RegisterScreen';
 import CameraScreen from 'screens/cameraScreen';
 
 import Home from './(tabs)/home';
@@ -13,6 +15,7 @@ export type StackParamList = {
   App: undefined;
   CameraScreen: undefined;
   Onboarding: undefined;
+  Register: undefined;
 };
 export type CameraParamList = {
   Camera: undefined;
@@ -24,12 +27,17 @@ const AppStack = createStackNavigator<StackParamList>();
 export default function AppNavigator() {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <AppStack.Screen name="Onboarding" children={OnboardingScreen} /> */}
-      <AppStack.Screen name="App" children={TabNavigator} />
-      <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
+      <AppStack.Screen name="Onboarding" children={OnboardingScreen} />
+      <AppStack.Screen name="Register" children={RegisterScreen} />
+      {/* <AppStack.Screen name="App" children={TabNavigator} />
+      <AppStack.Screen name="CameraScreen" children={CameraNavigator} /> */}
     </AppStack.Navigator>
   );
 }
+
+// function GuestStack (){
+//   return ()
+// }
 
 function TabNavigator() {
   return (

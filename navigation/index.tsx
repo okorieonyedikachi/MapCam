@@ -6,6 +6,14 @@ import { Text } from 'react-native';
 
 import AppNavigator from './tab-navigation';
 
+const AppContent = () => {
+  return (
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
+  );
+};
+
 export default function RootStack() {
   const [fontsLoaded] = useFonts({
     BubblegumSans: require('../assets/fonts/BubblegumSans-Regular.ttf'),
@@ -14,9 +22,5 @@ export default function RootStack() {
   if (!fontsLoaded) {
     return <Text>App Loading</Text>;
   }
-  return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
-  );
+  return <AppContent />;
 }
