@@ -40,7 +40,7 @@ export const OnboardingData: OnboardingDataType[] = [
     title: 'Unique challenge awaits',
     text: 'Our app generates new challenges based on your location , testing your observation skills',
     animation: require('../assets/animations/Detective.json'),
-    textColor: '#FFFFFF',
+    textColor: 'orange',
     backgroundColor: '#FF9933',
   },
   {
@@ -48,7 +48,7 @@ export const OnboardingData: OnboardingDataType[] = [
     title: 'Capture your finds ',
     text: 'Snap photos of the challenged objects. Show off your exploration skills',
     animation: require('../assets/animations/Capture.json'),
-    textColor: '#FFFFFF',
-    backgroundColor: '#E67E22',
+    textColor: '#E67E22',
+    backgroundColor: '#fffaeb',
   },
 ];

@@ -3,7 +3,9 @@ import { View, Text, SafeAreaView } from 'react-native';
 const RegisterScreen = () => {
   return (
     <SafeAreaView>
-      <View>Hello</View>
+      <View>
+        <Text>Hello</Text>
+      </View>
     </SafeAreaView>
   );
 };

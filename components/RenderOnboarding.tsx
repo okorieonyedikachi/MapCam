@@ -20,11 +20,7 @@ const RenderOnboarding = ({ item, index }: Props) => {
   };
 
   return (
-    <View
-      style={[
-        styles.itemContainer,
-        { width: SCREEN_WIDTH, backgroundColor: item.backgroundColor },
-      ]}>
+    <View style={[styles.itemContainer, { width: SCREEN_WIDTH, backgroundColor: '#fffaeb' }]}>
       <Pressable onPressIn={navigateRegisterScreen} style={[styles.skipBtn]}>
         <Text
           style={{
@@ -48,7 +44,10 @@ const RenderOnboarding = ({ item, index }: Props) => {
         <Text style={[styles.itemsHeader, { color: item.textColor }]}>{item.title}</Text>
         <Text style={[styles.itemText, { color: item.textColor }]}>{item.text}</Text>
       </View>
-      <Pagination />
+      {/* <Pagination /> */}
+      <Pressable style={styles.startButton}>
+        <Text> Get Started</Text>
+      </Pressable>
     </View>
   );
 };
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     fontFamily: 'BubblegumSans',
   },
+  startButton: {},
   pagination: {
     bottom: 0,
     backgroundColor: 'red',
