@@ -48,7 +48,8 @@ export const OnboardingData: OnboardingDataType[] = [
     title: 'Capture your finds ',
     text: 'Snap photos of the challenged objects. Show off your exploration skills',
     animation: require('../assets/animations/Capture.json'),
-    textColor: '#E67E22',
+    textColor: 'orange',
     backgroundColor: '#fffaeb',
   },
 ];
+// E67E22

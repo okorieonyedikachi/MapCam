@@ -1,13 +1,22 @@
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, useWindowDimensions } from 'react-native';
 
 const RegisterScreen = () => {
+  const { width: SCREEN_WIDTH } = useWindowDimensions();
+  console.log('true');
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[styles.mainContainer, { width: SCREEN_WIDTH }]}>
       <View>
-        <Text>Hello</Text>
+        <Text>hello</Text>
       </View>
     </SafeAreaView>
   );
 };
 
 export default RegisterScreen;
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: 'red',
+  },
+});

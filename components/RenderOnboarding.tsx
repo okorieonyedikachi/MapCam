@@ -5,7 +5,7 @@ import LottieView from 'lottie-react-native';
 import { StackParamList } from 'navigation/tab-navigation';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 interface Props {
   item: OnboardingDataType;
   index: number;
@@ -42,12 +42,22 @@ const RenderOnboarding = ({ item, index }: Props) => {
       </View>
       <View style={styles.textContainer}>
         <Text style={[styles.itemsHeader, { color: item.textColor }]}>{item.title}</Text>
-        <Text style={[styles.itemText, { color: item.textColor }]}>{item.text}</Text>
+        <Text style={styles.itemText}>{item.text}</Text>
       </View>
       {/* <Pagination /> */}
-      <Pressable style={styles.startButton}>
-        <Text> Get Started</Text>
-      </Pressable>
+      {item.id === 3 && (
+        <Pressable style={styles.startButton} onPress={navigateRegisterScreen}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              fontFamily: 'BubblegumSans',
+              fontWeight: '800',
+            }}>
+            GET STARTED
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -85,7 +95,15 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     fontFamily: 'BubblegumSans',
   },
-  startButton: {},
+  startButton: {
+    backgroundColor: 'orange',
+    width: '50%',
+    height: 50,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+  },
   pagination: {
     bottom: 0,
     backgroundColor: 'red',

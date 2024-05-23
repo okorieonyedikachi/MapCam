@@ -42,7 +42,7 @@ const CameraScreen = () => {
       try {
         const newPhoto = await cameraRef.current?.takePictureAsync();
         console.log(newPhoto);
-        setPhoto(newPhoto.uri);
+        // setPhoto(newPhoto.uri);
       } catch (e) {
         console.log(e);
       }
