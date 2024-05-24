@@ -16,12 +16,12 @@ const RenderOnboarding = ({ item, index }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const navigation = useNavigation<OnboardingScreenNavigationProps>();
   const navigateRegisterScreen = () => {
-    navigation.navigate('Register');
+    navigation.navigate('Login');
   };
 
   return (
     <View style={[styles.itemContainer, { width: SCREEN_WIDTH, backgroundColor: '#fffaeb' }]}>
-      {/* <Pressable onPressIn={navigateRegisterScreen} style={[styles.skipBtn]}>
+      <Pressable onPressIn={navigateRegisterScreen} style={[styles.skipBtn]}>
         <Text
           style={{
             color: 'grey',
@@ -31,15 +31,14 @@ const RenderOnboarding = ({ item, index }: Props) => {
           }}>
           Skip
         </Text>
-      </Pressable> */}
+      </Pressable>
       <View>
-        {/* <LottieView
+        <LottieView
           source={item.animation}
           style={{ width: SCREEN_WIDTH * 0.9, height: SCREEN_WIDTH * 0.9 }}
           autoPlay
           loop
-        /> */}
-        <Text>hii</Text>
+        />
       </View>
       <View style={styles.textContainer}>
         <Text style={[styles.itemsHeader, { color: item.textColor }]}>{item.title}</Text>

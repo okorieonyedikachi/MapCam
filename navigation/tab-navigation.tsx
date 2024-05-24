@@ -7,8 +7,10 @@ import { Map, ProfileCircle, Setting3 } from 'iconsax-react-native';
 import Home from './(tabs)/home';
 import Profile from './(tabs)/profile';
 import Settings from './(tabs)/settings';
+// import LoginScreen from './screens/LoginScreen';
 import LoginScreen from './screens/LoginScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
+// import RegisterScreen from './screens/RegisterScreen';
 import CameraScreen from './screens/cameraScreen';
 
 export type StackParamList = {
@@ -16,6 +18,7 @@ export type StackParamList = {
   CameraScreen: undefined;
   Onboarding: undefined;
   Register: undefined;
+  Login: undefined;
 };
 export type CameraParamList = {
   Camera: undefined;
@@ -28,7 +31,7 @@ export default function AppNavigator() {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="Onboarding" children={OnboardingScreen} />
-      <AppStack.Screen name="Register" children={LoginScreen} />
+      <AppStack.Screen name="Login" children={LoginScreen} />
       <AppStack.Screen name="App" children={TabNavigator} />
       <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
     </AppStack.Navigator>
