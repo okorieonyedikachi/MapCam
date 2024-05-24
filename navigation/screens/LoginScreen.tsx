@@ -1,32 +1,82 @@
+import { Formik } from 'formik';
+import { Eye } from 'iconsax-react-native';
+import { useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
+  // SafeAreaView,
   TextInput,
+  StyleSheet,
   Text,
   View,
   useWindowDimensions,
   Pressable,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
+  // Toggle visibility not functioning yet
+  const handlePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+    console.log(!isPasswordVisible);
+  };
   return (
-    <SafeAreaView style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}>
+    <KeyboardAvoidingView
+      style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.contentTitle}>WELCOME BACK</Text>
       <Text style={styles.subText}>Login to your account</Text>
-      <View style={styles.contentContainer}>
-        <TextInput
-          style={styles.inputField}
-          autoCapitalize="none"
-          placeholder="Email"
-          keyboardType="email-address"
-        />
-        <TextInput style={styles.inputField} autoCapitalize="none" placeholder="Password" />
-        <Pressable style={styles.btn}>
-          <Text style={styles.btnText}>Login</Text>
-        </Pressable>
-      </View>
-    </SafeAreaView>
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        onSubmit={(values) => console.log(values)}>
+        {({ handleChange, handleBlur, handleSubmit, values }) => (
+          <View style={styles.contentContainer}>
+            <TextInput
+              style={styles.inputField}
+              autoCapitalize="none"
+              placeholder="Email"
+              keyboardType="email-address"
+              value={values.email}
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+            />
+            <View>
+              <TextInput
+                style={styles.inputField}
+                autoCapitalize="none"
+                placeholder="Password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                secureTextEntry={isPasswordVisible}
+              />
+
+              <Eye
+                color="orange"
+                style={{ position: 'absolute', right: 20, bottom: 30 }}
+                onPress={handlePasswordVisibility}
+              />
+            </View>
+
+            <Pressable style={styles.btn}>
+              <Text style={styles.btnText}>Login</Text>
+            </Pressable>
+          </View>
+        )}
+      </Formik>
+      <Text
+        style={{
+          fontFamily: 'BubblegumSans',
+          color: 'grey',
+          alignSelf: 'center',
+          margin: 25,
+          fontSize: 20,
+        }}>
+        Don't have an account?<Text style={{ color: 'orange', marginLeft: 4 }}>Sign Up</Text>
+      </Text>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -55,8 +105,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inputField: {
-    padding: 20,
-    height: 40,
+    padding: 10,
+    height: 60,
     marginVertical: 12,
     width: '100%',
     borderBottomWidth: 1,
