@@ -1,6 +1,5 @@
 import RenderOnboarding from 'components/RenderOnboarding';
 import { OnboardingData } from 'lib/data';
-import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 const OnboardingScreen = () => {

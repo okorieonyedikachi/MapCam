@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Eye } from 'iconsax-react-native';
+import { Eye, EyeSlash } from 'iconsax-react-native';
 import { useState } from 'react';
 import {
   // SafeAreaView,
@@ -13,15 +13,15 @@ import {
   Platform,
 } from 'react-native';
 
-const RegisterScreen = () => {
+const LoginScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
-  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   // Toggle visibility not functioning yet
   const handlePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible);
-    console.log(!isPasswordVisible);
+    setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
   };
+
   return (
     <KeyboardAvoidingView
       style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}
@@ -50,14 +50,18 @@ const RegisterScreen = () => {
                 value={values.password}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
-                secureTextEntry={isPasswordVisible}
+                secureTextEntry={!isPasswordVisible}
               />
-
-              <Eye
-                color="orange"
-                style={{ position: 'absolute', right: 20, bottom: 30 }}
-                onPress={handlePasswordVisibility}
-              />
+              <Pressable onPress={handlePasswordVisibility}>
+                {isPasswordVisible ? (
+                  <EyeSlash
+                    color="orange"
+                    style={{ position: 'absolute', right: 20, bottom: 30 }}
+                  />
+                ) : (
+                  <Eye color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
+                )}
+              </Pressable>
             </View>
 
             <Pressable style={styles.btn}>
@@ -74,13 +78,19 @@ const RegisterScreen = () => {
           margin: 25,
           fontSize: 20,
         }}>
-        Don't have an account?<Text style={{ color: 'orange', marginLeft: 4 }}>Sign Up</Text>
+        Don't have an account?
+        <Pressable>
+          <Text
+            style={{ color: 'orange', marginLeft: 4, fontFamily: 'BubblegumSans', fontSize: 20 }}>
+            Sign Up
+          </Text>
+        </Pressable>
       </Text>
     </KeyboardAvoidingView>
   );
 };
 
-export default RegisterScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   mainContainer: {

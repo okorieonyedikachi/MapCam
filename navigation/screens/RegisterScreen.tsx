@@ -1,7 +1,31 @@
-import { SafeAreaView, StyleSheet, TextInput, Text, View, useWindowDimensions } from 'react-native';
+import { Eye, EyeSlash } from 'iconsax-react-native';
+import { useEffect, useState } from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  useWindowDimensions,
+  Pressable,
+} from 'react-native';
 
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  // Toggle visibility not functioning yet
+  const handlePasswordVisibility = () => {
+    console.log('Before ' + isPasswordVisible);
+    setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+    // console.log('After ' + isPasswordVisible);
+  };
+
+  // Log the updated state value
+  useEffect(() => {
+    console.log('Password visibility changed to: ', isPasswordVisible);
+  }, [isPasswordVisible]);
+
   return (
     <SafeAreaView style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}>
       <Text style={styles.contentTitle}>LETS GET STARTED</Text>
@@ -14,6 +38,25 @@ const RegisterScreen = () => {
         />
         <TextInput style={styles.inputField} autoCapitalize="none" placeholder="Password" />
         <TextInput style={styles.inputField} autoCapitalize="none" placeholder="Confirm Password" />
+
+        <View>
+          <TextInput
+            style={styles.inputField}
+            autoCapitalize="none"
+            placeholder="Password"
+            // value={values.password}
+            // onChangeText={handleChange('password')}
+            // onBlur={handleBlur('password')}
+            secureTextEntry={!isPasswordVisible}
+          />
+          <Pressable onPress={handlePasswordVisibility}>
+            {isPasswordVisible ? (
+              <Eye color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
+            ) : (
+              <EyeSlash color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
+            )}
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );
