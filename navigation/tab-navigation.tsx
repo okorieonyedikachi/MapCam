@@ -10,7 +10,7 @@ import Settings from './(tabs)/settings';
 // import LoginScreen from './screens/LoginScreen';
 import LoginScreen from './screens/LoginScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
-// import RegisterScreen from './screens/RegisterScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import CameraScreen from './screens/cameraScreen';
 
 export type StackParamList = {
@@ -30,8 +30,9 @@ const AppStack = createStackNavigator<StackParamList>();
 export default function AppNavigator() {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      <AppStack.Screen name="Onboarding" children={OnboardingScreen} />
-      <AppStack.Screen name="Login" children={LoginScreen} />
+      <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
+      <AppStack.Screen name="Login" component={LoginScreen} />
+      <AppStack.Screen name="Register" component={RegisterScreen} />
       <AppStack.Screen name="App" children={TabNavigator} />
       <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
     </AppStack.Navigator>
