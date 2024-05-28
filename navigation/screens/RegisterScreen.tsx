@@ -1,62 +1,53 @@
-import { Eye, EyeSlash } from 'iconsax-react-native';
-import { useEffect, useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-  useWindowDimensions,
-  Pressable,
-} from 'react-native';
+import CustomInput from 'components/CustomInput';
+import PaswordInput from 'components/PasswordInput';
+import { Field, Formik } from 'formik';
+import { Pressable, SafeAreaView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  // Toggle visibility not functioning yet
-  const handlePasswordVisibility = () => {
-    console.log('Before ' + isPasswordVisible);
-    setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
-    // console.log('After ' + isPasswordVisible);
-  };
-
-  // Log the updated state value
-  useEffect(() => {
-    console.log('Password visibility changed to: ', isPasswordVisible);
-  }, [isPasswordVisible]);
 
   return (
     <SafeAreaView style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}>
       <Text style={styles.contentTitle}>LETS GET STARTED</Text>
       <View style={styles.contentContainer}>
-        <TextInput
-          style={styles.inputField}
-          autoCapitalize="none"
-          placeholder="Email"
-          keyboardType="email-address"
-        />
-        <TextInput style={styles.inputField} autoCapitalize="none" placeholder="Password" />
-        <TextInput style={styles.inputField} autoCapitalize="none" placeholder="Confirm Password" />
-
-        <View>
-          <TextInput
-            style={styles.inputField}
-            autoCapitalize="none"
-            placeholder="Password"
-            // value={values.password}
-            // onChangeText={handleChange('password')}
-            // onBlur={handleBlur('password')}
-            secureTextEntry={!isPasswordVisible}
-          />
-          <Pressable onPress={handlePasswordVisibility}>
-            {isPasswordVisible ? (
-              <Eye color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
-            ) : (
-              <EyeSlash color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
-            )}
-          </Pressable>
-        </View>
+        <Formik
+          initialValues={{
+            fullName: '',
+            funFact: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          }}
+          onSubmit={(values) => console.log(values)}>
+          {({ handleSubmit, isValid }) => (
+            <>
+              <Field component={CustomInput} name="fullName" placeholder="Full Name" />
+              <Field
+                component={CustomInput}
+                name="funFact"
+                placeholder="Fun fact about you"
+                multiline
+                numberOfLines={3}
+                editable
+              />
+              <Field
+                component={CustomInput}
+                name="email"
+                placeholder="Email"
+                keyboardType="email-address"
+              />
+              <Field component={PaswordInput} name="password" placeholder="Password" />
+              <Field
+                component={PaswordInput}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+              />
+              <Pressable style={styles.btn}>
+                <Text style={styles.btnText}>Sign In</Text>
+              </Pressable>
+            </>
+          )}
+        </Formik>
       </View>
     </SafeAreaView>
   );
@@ -89,5 +80,19 @@ const styles = StyleSheet.create({
     borderBottomColor: 'grey',
     fontSize: 18,
     fontFamily: 'BubblegumSans',
+  },
+  btn: {
+    backgroundColor: 'orange',
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 18,
+    width: '40%',
+    alignSelf: 'center',
+  },
+  btnText: {
+    fontSize: 24,
+    color: 'white',
+    fontFamily: 'BubblegumSans',
+    alignSelf: 'center',
   },
 });

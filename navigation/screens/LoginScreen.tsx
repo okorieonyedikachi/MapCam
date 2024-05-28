@@ -1,8 +1,9 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import PaswordInput from 'components/PasswordInput';
 import { Formik } from 'formik';
-import { Eye, EyeSlash } from 'iconsax-react-native';
-import { useState } from 'react';
+import { StackParamList } from 'navigation/tab-navigation';
 import {
-  // SafeAreaView,
   TextInput,
   StyleSheet,
   Text,
@@ -13,13 +14,15 @@ import {
   Platform,
 } from 'react-native';
 
+type LoginScreenNavigationProps = StackNavigationProp<StackParamList, 'Login'>;
+
 const LoginScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
+  const navigation = useNavigation<LoginScreenNavigationProps>();
   // Toggle visibility not functioning yet
-  const handlePasswordVisibility = () => {
-    setIsPasswordVisible((isPasswordVisible) => !isPasswordVisible);
+
+  const navigateRegisterScreen = () => {
+    navigation.navigate('Register');
   };
 
   return (
@@ -42,28 +45,12 @@ const LoginScreen = () => {
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
             />
-            <View>
-              <TextInput
-                style={styles.inputField}
-                autoCapitalize="none"
-                placeholder="Password"
-                value={values.password}
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                secureTextEntry={!isPasswordVisible}
-              />
-              <Pressable onPress={handlePasswordVisibility}>
-                {isPasswordVisible ? (
-                  <EyeSlash
-                    color="orange"
-                    style={{ position: 'absolute', right: 20, bottom: 30 }}
-                  />
-                ) : (
-                  <Eye color="orange" style={{ position: 'absolute', right: 20, bottom: 30 }} />
-                )}
-              </Pressable>
-            </View>
-
+            <PaswordInput
+              value={values.password}
+              onBlur={handleBlur('password')}
+              onChangeText={handleChange('password')}
+              placeholder="Password"
+            />
             <Pressable style={styles.btn}>
               <Text style={styles.btnText}>Login</Text>
             </Pressable>
@@ -79,7 +66,7 @@ const LoginScreen = () => {
           fontSize: 20,
         }}>
         Don't have an account?
-        <Pressable>
+        <Pressable onPress={navigateRegisterScreen}>
           <Text
             style={{ color: 'orange', marginLeft: 4, fontFamily: 'BubblegumSans', fontSize: 20 }}>
             Sign Up
