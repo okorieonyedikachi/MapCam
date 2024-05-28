@@ -8,7 +8,7 @@ interface PaswordInputProps {
   onBlur: (e: any) => void;
   placeholder: string;
 }
-const PaswordInput = ({ value, onChangeText, onBlur, placeholder }: PaswordInputProps) => {
+const PasswordInput = ({ value, onChangeText, onBlur, placeholder }: PaswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handlePasswordVisibility = () => {
@@ -36,7 +36,7 @@ const PaswordInput = ({ value, onChangeText, onBlur, placeholder }: PaswordInput
   );
 };
 
-export default PaswordInput;
+export default PasswordInput;
 
 const styles = StyleSheet.create({
   inputField: {

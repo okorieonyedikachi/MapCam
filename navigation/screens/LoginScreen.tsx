@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import PaswordInput from 'components/PasswordInput';
+import PasswordInput from 'components/PasswordInput';
 import { Formik } from 'formik';
 import { StackParamList } from 'navigation/tab-navigation';
 import {
@@ -45,12 +45,22 @@ const LoginScreen = () => {
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
             />
-            <PaswordInput
+            <PasswordInput
               value={values.password}
               onBlur={handleBlur('password')}
               onChangeText={handleChange('password')}
               placeholder="Password"
             />
+            <Text
+              style={{
+                alignSelf: 'flex-end',
+                color: 'grey',
+                fontSize: 18,
+                fontFamily: 'BubblegumSans',
+                marginVertical: 10,
+              }}>
+              Forgot Password?
+            </Text>
             <Pressable style={styles.btn}>
               <Text style={styles.btnText}>Login</Text>
             </Pressable>

@@ -13,9 +13,11 @@ const CustomInput = (props) => {
   return (
     <>
       <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
         style={[styles.inputField, hasErrors && styles.errorInput]}
         value={value}
-        onChange={(text) => onChange(name)(text)}
+        onChange={onChange(name)}
         onBlur={() => {
           setFieldTouched(name);
           onBlur(name);
