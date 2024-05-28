@@ -15,13 +15,13 @@ type OnboardingScreenNavigationProps = StackNavigationProp<StackParamList, 'Onbo
 const RenderOnboarding = ({ item, index }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const navigation = useNavigation<OnboardingScreenNavigationProps>();
-  const navigateRegisterScreen = () => {
+  const navigateLoginScreen = () => {
     navigation.navigate('Login');
   };
 
   return (
     <View style={[styles.itemContainer, { width: SCREEN_WIDTH, backgroundColor: '#fffaeb' }]}>
-      <Pressable onPressIn={navigateRegisterScreen} style={[styles.skipBtn]}>
+      <Pressable onPressIn={navigateLoginScreen} style={[styles.skipBtn]}>
         <Text
           style={{
             color: 'grey',
@@ -46,7 +46,7 @@ const RenderOnboarding = ({ item, index }: Props) => {
       </View>
       {/* <Pagination /> */}
       {item.id === 3 && (
-        <Pressable style={styles.startButton} onPress={navigateRegisterScreen}>
+        <Pressable style={styles.startButton} onPress={navigateLoginScreen}>
           <Text
             style={{
               color: 'white',
