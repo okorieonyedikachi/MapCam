@@ -61,7 +61,7 @@ const LoginScreen = () => {
               }}>
               Forgot Password?
             </Text>
-            <Pressable style={styles.btn}>
+            <Pressable style={styles.btn} onPress={() => handleSubmit()}>
               <Text style={styles.btnText}>Login</Text>
             </Pressable>
           </View>

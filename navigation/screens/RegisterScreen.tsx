@@ -15,67 +15,89 @@ import {
 
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
+  const initialValues = {
+    fullName: '',
+    funFact: '',
+    // email: '',
+    // password: '',
+    // confirmPassword: '',
+  };
+  const submitFunc = (value: any) => {
+    console.log(value);
+  };
 
   return (
     <SafeAreaView style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}>
       <Text style={styles.contentTitle}>LETS GET STARTED</Text>
-      <Formik
-        initialValues={{
-          fullName: '',
-          funFact: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        }}
-        onSubmit={(values) => console.log(values)}>
-        {({ handleSubmit, isValid, values }) => (
-          <View style={styles.contentContainer}>
-            <Field component={CustomInput} name="fullName" placeholder="Full Name" />
-            <Field
-              component={CustomInput}
-              name="funFact"
-              placeholder="Fun fact about you"
-              multiline
-              numberOfLines={3}
-              editable
-            />
-            <Field
-              component={CustomInput}
-              name="email"
-              placeholder="Email"
-              keyboardType="email-address"
-            />
-            <Field component={CustomInput} name="password" placeholder="Password" />
-            <Field component={CustomInput} name="confirmPassword" placeholder="Confirm Password" />
-            <Button title="Submit" onPress={() => handleSubmit()} />
-            <TouchableOpacity style={styles.btn} disabled={isValid} onPress={() => handleSubmit()}>
-              <Text style={styles.btnText}>Sign In</Text>
-            </TouchableOpacity>
 
+      <View style={styles.contentContainer}>
+        <Formik initialValues={initialValues} onSubmit={submitFunc}>
+          {({ handleSubmit, handleChange, values }) => (
+            <>
+              <TextInput
+                style={styles.inputField}
+                placeholder="full name"
+                onChangeText={handleChange}
+                value={values.fullName}
+              />
+              <CustomInput onChangeText={handleChange} value={values.funFact} name="funFact" />
+              <Pressable onPress={() => handleSubmit()}>
+                <Text>Submit</Text>
+              </Pressable>
+            </>
+          )}
+          {/* {({ handleSubmit, isValid, values }) => ( */}
+          {/* // <>
+            //   <Field component={CustomInput} name="fullName" placeholder="Full Name" />
+            //   <Field
+            //     component={CustomInput}
+            //     name="funFact"
+            //     placeholder="Fun fact about you"
+            //     multiline
+            //     numberOfLines={3}
+            //     editable
+            //   />
+            //   <Field
+            //     component={CustomInput}
+            //     name="email"
+            //     placeholder="Email"
+            //     keyboardType="email-address"
+            //   />
+            //   <Field component={CustomInput} name="password" placeholder="Password" />
+            //   <Field
+            //     component={CustomInput}
+            //     name="confirmPassword"
+            //     placeholder="Confirm Password"
+            //   />
+            //   {/* <Button title="Submit" onPress={() => handleSubmit()} /> */}
+          {/* //   <Pressable style={styles.btn} disabled={isValid} onPress={() => console.log('true')}>
+            //     <Text style={styles.btnText}>Sign In</Text>
+            //   </Pressable>
+            // </> */}
+        </Formik>
+        <Text
+          style={{
+            fontFamily: 'BubblegumSans',
+            color: 'grey',
+            alignSelf: 'center',
+            margin: 25,
+            fontSize: 20,
+          }}>
+          Already have an account?
+          <Pressable>
             <Text
               style={{
+                color: 'orange',
+                marginLeft: 4,
                 fontFamily: 'BubblegumSans',
-                color: 'grey',
-                alignSelf: 'center',
-                margin: 25,
                 fontSize: 20,
-              }}>
-              Already have an account?
-              <Pressable>
-                <Text
-                  style={{
-                    color: 'orange',
-                    marginLeft: 4,
-                    fontFamily: 'BubblegumSans',
-                    fontSize: 20,
-                  }}>
-                  Login
-                </Text>
-              </Pressable>
+              }}
+              onPress={() => console.log('true')}>
+              Login
             </Text>
-          </View>
-        )}
-      </Formik>
+          </Pressable>
+        </Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -99,7 +121,7 @@ const styles = StyleSheet.create({
   },
   inputField: {
     padding: 20,
-    height: 40,
+    // height: 40,
     marginVertical: 12,
     width: '100%',
     borderBottomWidth: 1,

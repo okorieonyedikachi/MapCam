@@ -1,30 +1,38 @@
-import React from 'react';
+import { useField } from 'formik';
+import React, { ChangeEvent } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-const CustomInput = (props) => {
-  const {
-    field: { name, onBlur, onChange, value },
-    form: { errors, touched, setFieldTouched },
-    ...inputProps
-  } = props;
-  const hasErrors = errors[name] && touched[name];
+interface CustomInputProps {
+  onChangeText: {
+    (e: ChangeEvent<any>): void;
+    <T = string | ChangeEvent<any>>(
+      field: T
+    ): T extends ChangeEvent<any> ? void : (e: string | ChangeEvent<any>) => void;
+  };
+  name: string;
+  value: string;
+}
 
+const CustomInput = ({ onChangeText, value, name }: CustomInputProps) => {
   return (
+    // <>
+    //   <TextInput
+    //     autoCapitalize="none"
+    //     autoCorrect={false}
+    //     style={[styles.inputField, hasErrors && styles.errorInput]}
+    //     value={value}
+    //     onChange={onChange(name)}
+    //     onBlur={() => {
+    //       setFieldTouched(name);
+    //       onBlur(name);
+    //     }}
+    //     {...inputProps}
+    //   />
+    //   {hasErrors && <Text style={styles.errorText}> {errors[name]}</Text>}
+    // </>
     <>
-      <TextInput
-        autoCapitalize="none"
-        autoCorrect={false}
-        style={[styles.inputField, hasErrors && styles.errorInput]}
-        value={value}
-        onChange={onChange(name)}
-        onBlur={() => {
-          setFieldTouched(name);
-          onBlur(name);
-        }}
-        {...inputProps}
-      />
-      {hasErrors && <Text style={styles.errorText}> {errors[name]}</Text>}
+      <TextInput onChangeText={onChangeText(value)} value={value} style={styles.inputField} />
     </>
   );
 };
