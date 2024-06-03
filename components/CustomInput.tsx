@@ -1,6 +1,5 @@
-import { useField } from 'formik';
 import React, { ChangeEvent } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 interface CustomInputProps {
