@@ -5,10 +5,10 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 interface PaswordInputProps {
   value: string;
   onChangeText: (e: any) => void;
-  onBlur: (e: any) => void;
+  // onBlur: (e: any) => void;
   placeholder: string;
 }
-const PasswordInput = ({ value, onChangeText, onBlur, placeholder }: PaswordInputProps) => {
+const PasswordInput = ({ value, onChangeText, placeholder }: PaswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handlePasswordVisibility = () => {
@@ -19,10 +19,11 @@ const PasswordInput = ({ value, onChangeText, onBlur, placeholder }: PaswordInpu
       <TextInput
         style={styles.inputField}
         autoCapitalize="none"
+        autoCorrect={false}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
-        onBlur={onBlur}
+        // onBlur={onBlur}
         secureTextEntry={!isPasswordVisible}
       />
       <Pressable onPress={handlePasswordVisibility}>

@@ -1,4 +1,3 @@
-import CustomInput from 'components/CustomInput';
 import PasswordInput from 'components/PasswordInput';
 import { Field, Formik } from 'formik';
 import {
@@ -18,9 +17,9 @@ const RegisterScreen = () => {
   const initialValues = {
     fullName: '',
     funFact: '',
-    // email: '',
-    // password: '',
-    // confirmPassword: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
   const submitFunc = (value: any) => {
     console.log(value);
@@ -29,20 +28,47 @@ const RegisterScreen = () => {
   return (
     <SafeAreaView style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}>
       <Text style={styles.contentTitle}>LETS GET STARTED</Text>
-
+      <Text style={styles.subText}>Create your new account</Text>
       <View style={styles.contentContainer}>
         <Formik initialValues={initialValues} onSubmit={submitFunc}>
-          {({ handleSubmit, handleChange, values }) => (
+          {({ handleSubmit, handleChange, values, isValid }) => (
             <>
               <TextInput
                 style={styles.inputField}
-                placeholder="full name"
-                onChangeText={handleChange}
+                placeholder="Full name"
+                onChangeText={handleChange('fullName')}
                 value={values.fullName}
+                autoCapitalize="none"
+                autoCorrect={false}
               />
-              <CustomInput onChangeText={handleChange} value={values.funFact} name="funFact" />
-              <Pressable onPress={() => handleSubmit()}>
-                <Text>Submit</Text>
+              <TextInput
+                style={styles.inputField}
+                placeholder="Fun Fact about you"
+                onChangeText={handleChange('funFact')}
+                value={values.funFact}
+                multiline
+                numberOfLines={3}
+              />
+              <TextInput
+                style={styles.inputField}
+                placeholder="Email"
+                onChangeText={handleChange('email')}
+                value={values.email}
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              <PasswordInput
+                value={values.password}
+                onChangeText={handleChange('password')}
+                placeholder="Password"
+              />
+              <PasswordInput
+                value={values.confirmPassword}
+                onChangeText={handleChange('confirmPassword')}
+                placeholder="Confirm Password"
+              />
+              <Pressable style={styles.btn} onPress={() => handleSubmit()}>
+                <Text style={styles.btnText}>Sign In</Text>
               </Pressable>
             </>
           )}
@@ -115,6 +141,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '700',
     textAlign: 'center',
+  },
+  subText: {
+    textAlign: 'center',
+    fontFamily: 'BubblegumSans',
+    color: 'grey',
+    fontSize: 18,
+    marginTop: 12,
   },
   contentContainer: {
     padding: 20,
