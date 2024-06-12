@@ -47,7 +47,7 @@ const LoginScreen = () => {
             />
             <PasswordInput
               value={values.password}
-              onBlur={handleBlur('password')}
+              // onBlur={handleBlur('password')}
               onChangeText={handleChange('password')}
               placeholder="Password"
             />
