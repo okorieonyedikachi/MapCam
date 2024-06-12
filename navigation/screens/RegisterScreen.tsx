@@ -1,16 +1,36 @@
 import PasswordInput from 'components/PasswordInput';
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import {
-  Button,
   Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
   useWindowDimensions,
 } from 'react-native';
+import * as Yup from 'yup';
+
+const RegisterSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .matches(/(\w.+\s).+/, 'Enter at least 2 names')
+    .required('Full name is required'),
+  funFact: Yup.string().max(60, 'Too long!'),
+  phoneNumber: Yup.string()
+    .matches(/(01)(\d){8}\b/, 'Enter a valid phone number')
+    .required('Phone number is required'),
+  email: Yup.string().email('Please enter valid email').required('Email is required'),
+  password: Yup.string()
+    .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+    .matches(/\d/, 'Password must have a number')
+    .matches(/[!@#$%^&*()\-_"=+{}; :,<.>]/, 'Password must have a special character')
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords do not match')
+    .required('Confirm password is required'),
+});
 
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -30,8 +50,11 @@ const RegisterScreen = () => {
       <Text style={styles.contentTitle}>LETS GET STARTED</Text>
       <Text style={styles.subText}>Create your new account</Text>
       <View style={styles.contentContainer}>
-        <Formik initialValues={initialValues} onSubmit={submitFunc}>
-          {({ handleSubmit, handleChange, values, isValid }) => (
+        <Formik
+          initialValues={initialValues}
+          onSubmit={submitFunc}
+          validationSchema={RegisterSchema}>
+          {({ handleSubmit, handleChange, values, errors, touched }) => (
             <>
               <TextInput
                 style={styles.inputField}
