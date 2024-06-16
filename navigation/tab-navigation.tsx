@@ -30,9 +30,7 @@ const AppStack = createStackNavigator<StackParamList>();
 export default function AppNavigator() {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
-      <AppStack.Screen name="Login" component={LoginScreen} />
-      <AppStack.Screen name="Register" component={RegisterScreen} />
+      s
       <AppStack.Screen name="App" children={TabNavigator} />
       <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
     </AppStack.Navigator>
