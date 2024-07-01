@@ -41,8 +41,8 @@ const RegisterScreen = () => {
     password: '',
     confirmPassword: '',
   };
-  const submitFunc = (value: any) => {
-    console.log(value);
+  const submitFunc = (values: any) => {
+    console.log(values);
   };
 
   return (

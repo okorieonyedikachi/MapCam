@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import PasswordInput from 'components/PasswordInput';
 import { Formik } from 'formik';
-import { StackParamList } from 'navigation/tab-navigation';
+import { AuthParamList } from 'navigation/tab-navigation';
 import {
   TextInput,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
   Platform,
 } from 'react-native';
 
-type LoginScreenNavigationProps = StackNavigationProp<StackParamList, 'Login'>;
+type LoginScreenNavigationProps = StackNavigationProp<AuthParamList, 'Login'>;
 
 const LoginScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -25,15 +25,17 @@ const LoginScreen = () => {
     navigation.navigate('Register');
   };
 
+  const submitFunc = (values: any) => {
+    console.log(values);
+  };
+
   return (
     <KeyboardAvoidingView
       style={[styles.mainContainer, { height: SCREEN_HEIGHT }]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.contentTitle}>WELCOME BACK</Text>
       <Text style={styles.subText}>Login to your account</Text>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => console.log(values)}>
+      <Formik initialValues={{ email: '', password: '' }} onSubmit={submitFunc}>
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View style={styles.contentContainer}>
             <TextInput
