@@ -16,21 +16,25 @@ import CameraScreen from './screens/cameraScreen';
 export type StackParamList = {
   App: undefined;
   CameraScreen: undefined;
-  Onboarding: undefined;
-  Register: undefined;
-  Login: undefined;
+  Auth: undefined;
 };
 export type CameraParamList = {
   Camera: undefined;
 };
+export type AuthParamList = {
+  Onboarding: undefined;
+  Login: undefined;
+  Register: undefined;
+};
 const Tab = createBottomTabNavigator();
 const CamStack = createStackNavigator<CameraParamList>();
 const AppStack = createStackNavigator<StackParamList>();
+const AuthStack = createStackNavigator<AuthParamList>();
 
 export default function AppNavigator() {
   return (
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
-      s
+      <AppStack.Screen name="Auth" children={AuthNavigator} />
       <AppStack.Screen name="App" children={TabNavigator} />
       <AppStack.Screen name="CameraScreen" children={CameraNavigator} />
     </AppStack.Navigator>
@@ -91,5 +95,15 @@ function CameraNavigator() {
     <CamStack.Navigator>
       <CamStack.Screen name="Camera" component={CameraScreen} options={{ headerShown: false }} />
     </CamStack.Navigator>
+  );
+}
+
+function AuthNavigator() {
+  return (
+    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+      <AuthStack.Screen name="Onboarding" component={OnboardingScreen} />
+      <AuthStack.Screen name="Login" component={LoginScreen} />
+      <AuthStack.Screen name="Register" component={RegisterScreen} />
+    </AuthStack.Navigator>
   );
 }
