@@ -1,5 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import PasswordInput from 'components/PasswordInput';
 import { Formik } from 'formik';
+import { AuthParamList } from 'navigation/tab-navigation';
 import {
   Pressable,
   SafeAreaView,
@@ -32,6 +35,8 @@ const RegisterSchema = Yup.object().shape({
     .required('Confirm password is required'),
 });
 
+type RegisterScreenNavigationProps = StackNavigationProp<AuthParamList, 'Register'>;
+
 const RegisterScreen = () => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
   const initialValues = {
@@ -41,6 +46,13 @@ const RegisterScreen = () => {
     password: '',
     confirmPassword: '',
   };
+
+  const navigation = useNavigation<RegisterScreenNavigationProps>();
+
+  const navigateLoginScreen = () => {
+    navigation.navigate('Login');
+  };
+
   const submitFunc = (values: any) => {
     console.log(values);
   };
@@ -141,7 +153,7 @@ const RegisterScreen = () => {
                 fontFamily: 'BubblegumSans',
                 fontSize: 20,
               }}
-              onPress={() => console.log('true')}>
+              onPress={navigateLoginScreen}>
               Login
             </Text>
           </Pressable>
