@@ -12,6 +12,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 
 const RegisterSchema = Yup.object().shape({
@@ -22,7 +23,7 @@ const RegisterSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(/(01)(\d){8}\b/, 'Enter a valid phone number')
     .required('Phone number is required'),
-  email: Yup.string().email('Please enter valid email').required('Email is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
@@ -64,9 +65,9 @@ const RegisterScreen = () => {
       <View style={styles.contentContainer}>
         <Formik
           initialValues={initialValues}
-          onSubmit={submitFunc}
+          onSubmit={(values) => console.log(values)}
           validationSchema={RegisterSchema}>
-          {({ handleSubmit, handleChange, values, errors, touched }) => (
+          {({ handleSubmit, handleChange, values, errors, touched, setFieldTouched, isValid }) => (
             <>
               <TextInput
                 style={styles.inputField}
@@ -75,7 +76,11 @@ const RegisterScreen = () => {
                 value={values.fullName}
                 autoCapitalize="none"
                 autoCorrect={false}
+                onBlur={() => setFieldTouched('fullName')}
               />
+              {touched.fullName && errors.fullName && (
+                <Text style={styles.errorText}>{errors.fullName}</Text>
+              )}
               <TextInput
                 style={styles.inputField}
                 placeholder="Fun Fact about you"
@@ -83,7 +88,11 @@ const RegisterScreen = () => {
                 value={values.funFact}
                 multiline
                 numberOfLines={3}
+                onBlur={() => setFieldTouched('funFact')}
               />
+              {touched.funFact && errors.funFact && (
+                <Text style={styles.errorText}>{errors.funFact}</Text>
+              )}
               <TextInput
                 style={styles.inputField}
                 placeholder="Email"
@@ -91,50 +100,37 @@ const RegisterScreen = () => {
                 value={values.email}
                 autoCapitalize="none"
                 autoCorrect={false}
+                onBlur={() => setFieldTouched('email')}
               />
+              {touched.email && errors.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
               <PasswordInput
                 value={values.password}
                 onChangeText={handleChange('password')}
                 placeholder="Password"
+                onBlur={() => setFieldTouched('password')}
               />
+              {touched.password && errors.password && (
+                <Text style={styles.errorText}>{errors.password}</Text>
+              )}
               <PasswordInput
                 value={values.confirmPassword}
                 onChangeText={handleChange('confirmPassword')}
                 placeholder="Confirm Password"
+                onBlur={() => setFieldTouched('confirmPassword')}
               />
-              <Pressable style={styles.btn} onPress={() => handleSubmit()}>
+              {touched.confirmPassword && errors.confirmPassword && (
+                <Text style={styles.errorText}>{errors.confirmPassword}</Text>
+              )}
+              <TouchableOpacity
+                style={[styles.btn, { backgroundColor: isValid ? 'orange' : '#F6CBA0' }]}
+                onPress={() => handleSubmit}
+                disabled={!isValid}>
                 <Text style={styles.btnText}>Sign In</Text>
-              </Pressable>
+              </TouchableOpacity>
             </>
           )}
-          {/* {({ handleSubmit, isValid, values }) => ( */}
-          {/* // <>
-            //   <Field component={CustomInput} name="fullName" placeholder="Full Name" />
-            //   <Field
-            //     component={CustomInput}
-            //     name="funFact"
-            //     placeholder="Fun fact about you"
-            //     multiline
-            //     numberOfLines={3}
-            //     editable
-            //   />
-            //   <Field
-            //     component={CustomInput}
-            //     name="email"
-            //     placeholder="Email"
-            //     keyboardType="email-address"
-            //   />
-            //   <Field component={CustomInput} name="password" placeholder="Password" />
-            //   <Field
-            //     component={CustomInput}
-            //     name="confirmPassword"
-            //     placeholder="Confirm Password"
-            //   />
-            //   {/* <Button title="Submit" onPress={() => handleSubmit()} /> */}
-          {/* //   <Pressable style={styles.btn} disabled={isValid} onPress={() => console.log('true')}>
-            //     <Text style={styles.btnText}>Sign In</Text>
-            //   </Pressable>
-            // </> */}
         </Formik>
         <Text
           style={{
@@ -197,6 +193,11 @@ const styles = StyleSheet.create({
     borderBottomColor: 'grey',
     fontSize: 18,
     fontFamily: 'BubblegumSans',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    paddingLeft: 10,
   },
   btn: {
     backgroundColor: 'orange',
